@@ -1,0 +1,12 @@
+nom               , description                      , type  , taille
+ISBN              , identifiant de l'ouvrage         , string,     20
+titre             , titre de l'ouvrage               , string,    255
+auteur            , auteur de l'ouvrage              , string,     67
+editeur           , éditeur de l'ouvrage             , string,     67
+annee             , année de publication de l'ouvrage, int   ,       
+achat             , date d'achat de l'ouvrage        , int   ,       
+genre_id          , identifiant du genre             , string,     20
+genre_nom         , nom du genre                     , string,     67
+emprunteur_numero , numéro de l'emprunteur           , int   ,       
+emprunteur_nom    , nom de l'emprunteur              , string,     67
+emprunteur_adresse, adresse de l'emprunteur          , string,    255

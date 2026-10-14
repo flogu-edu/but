@@ -62,3 +62,6 @@
     - Ingénieur DevOps / SRE (Site Reliability Engineer) (automatisation et pont entre dev et ops).
     - Responsable du support / Helpdesk (management d'équipe et pilotage de la qualité de service).
     - Expert en cybersécurité / RSSI (spécialisation axée sur la protection des données et la sécurité des réseaux).
+
+
+Passage : 13h50
