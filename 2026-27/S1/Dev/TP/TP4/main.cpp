@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
 
 void init1(int & taille) {
     taille = 0;
@@ -138,20 +141,167 @@ void ex5() {
     std::cout<<trouve("Les montagnes Gandalf !", "Gandalf")<<std::endl;
 }
 
-void count(int tab[], std::string phrase) {
+void countOccurrence(int tab[127], std::string phrase) {
     for(unsigned int i = 0; i < phrase.length(); i++) {
-        tab[phrase[i]]++;
+        tab[int(phrase[i])]++;
+    }
+}
+
+void displayOccurrence(int tab[127]) {
+    for(unsigned int i = 0; i < 127; i++) {
+        if(tab[i] != 0) {
+            std::cout<<char(i)<<" : "<<tab[i]<<std::endl;
+        }
     }
 }
 
 void ex6() {
-    int tab[200];
-    count(tab, "J'aime les hommes");
-    for(int i = 0; i < 200; i++){
-        std::cout<<tab[i]<<std::endl;
+    int tab[127] = {0};
+    countOccurrence(tab, "J'aime les hommes");
+    displayOccurrence(tab);
+}
+
+std::string getRandomWord(std::string dico[], int size) {
+    int randomNumber = rand() % (size);
+    return dico[randomNumber];
+}
+
+void initBingo(std::string bingo[], int bingoSize, std::string dico[], int dicoSize) {
+    for(int i = 0; i < bingoSize * bingoSize; i++) {
+            bingo[i] = getRandomWord(dico, dicoSize);
     }
 }
 
+std::string getUserInput() {
+    std::string input;
+    std::cout<<"Entrez un mot : ";
+    std::cin>>input;
+    return input;
+}
+
+bool checkSuccess(bool successGrid[], int bingoSize) {
+    for(int i = 0; i < bingoSize; i++) {
+        bool success = true;
+
+        for(int j = 0; j < bingoSize; j++) {
+            if(successGrid[j * bingoSize + i] == false) {
+                success = false;
+                break;
+            }
+        }
+
+        if(success) {
+            return true;
+        }
+    }
+
+    for(int j = 0; j < bingoSize; j++) {
+        bool success = true;
+
+        for(int i = 0; i < bingoSize; i++) {
+            if(successGrid[j * bingoSize + i] == false) {
+                success = false;
+                break;
+            }
+        }
+
+        if(success) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void displayBingo(std::string bingo[], int bingoSize, bool successGrid[]) {
+    system("cls");
+    for(int i = 0; i < bingoSize; i++) {
+        for(int j = 0; j < bingoSize; j++) {
+            if(successGrid[j+(i*bingoSize)]) {
+                std::cout<<bingo[j+(i*bingoSize)];
+            }
+            if(j != bingoSize - 1) {
+                std::cout<<" | ";
+            }
+        }
+        std::cout<<"\n";
+    }
+}
+
+void bingoLoop(std::string bingo[], int bingoSize, bool successGrid[]) {
+    while(!checkSuccess(successGrid, bingoSize)) {
+        displayBingo(bingo, bingoSize, successGrid);
+        std::string userInput = getUserInput();
+        for(int i = 0; i < bingoSize * bingoSize; i++) {
+            if(bingo[i] == userInput) {
+                successGrid[i] = true;
+            }
+        }
+    }
+    displayBingo(bingo, bingoSize, successGrid);
+    std::cout<<"Bravo";
+}
+
+void ex7() {
+    srand(time(nullptr));
+    const int bingoSize = 3;
+    std::string bingo[bingoSize * bingoSize];
+    bool successGrid[bingoSize *bingoSize] = {false};
+    const int dicoSize = 10;
+    std::string dico[dicoSize] = {
+        "Isaac",
+        "Banane",
+        "Julien_Dore",
+        "Souris",
+        "Ordinateur",
+        "desoxyribonucleique",
+        "clavier",
+        "pointeur",
+        "tableau",
+        "dictionnaire"
+    };
+    initBingo(bingo, bingoSize, dico, dicoSize);
+    bingoLoop(bingo, bingoSize, successGrid);
+}
+
+void pushUserInput(std::vector<float> temps, std::vector<std::string> months) {
+    std::string month;
+    float temp;
+    std::cout<<"Entrez un mois : ";
+    std::cin>>month;
+    std::cout<<"\n"<<"Entrez la temperature : ";
+    std::cin>>temp;
+
+    months.push_back(month);
+    temps.push_back(temp);
+}
+
+void isHottest(std::vector<float> temps, std::vector<std::string> months) {
+    std::cout<<"Is hottest months : "<<std::endl;
+    for(unsigned int i = 0; i < temps.size(); i++) {
+        bool hottest = true;
+        for(unsigned int j = 0; j < temps.size(); j++) {
+            if(months[j] == months[i]) {
+                if(temps[i] < temps[j]) {
+                    hottest = false;
+                }
+            }
+        }
+        std::cout<<months[i]<<" : "<<hottest<<std::endl;
+    }
+}
+
+
+void ex8() {
+    std::vector<float> temps = {25,28};
+    std::vector<std::string> months = {"mai", "mai"};
+
+    // pushUserInput(temps, months);
+    // pushUserInput(temps, months);
+
+    isHottest(temps, months);
+}
+
 int main() {
-    ex5();
+    ex8();
 }
