@@ -31,6 +31,61 @@ O(n+m)
     }
 
 ## 6
-    void transformToNonPointeur(bool *relationPointeur[], int nbPersonnage, int relation[][nbPersonnage]) {
-        for(int i = 0; i < )
+    void transformToNonPointeur(int *relationPointeur[], int nbPersonnage, bool relation[][nbPersonnage]) {
+        for(int i = 0; i < nbPersonnage; i++) {
+            for(int j = 0; j < nbPersonnage; j++) {
+                relation[i][j] = false;
+            }
+        }
+
+        for(int i = 0; i < nbPersonnage) {
+            for(int j = 0; j < sizePtr(relationPointeur[i]); j++) {
+                relation[i][relationPointeur[i][j]] = true;
+            }
+        }
     }
+
+## 7
+    void displayRelationsPtr(int *relationPointeur[], int nbPersonnage) {
+        for(int i = 0; i < nbPersonnage; i++) {
+            std::cout<<"Relation du personnage "<<i<<" : "<<std::endl;
+            for(int j = 0; j < sizePtr(relationPointeur[i]); j++) {
+                std::cout<<j<<std::endl;
+            } 
+        }
+    }
+
+    void displayRelation(bool relation[][nbPersonnage], int nbPersonnage) {
+        for(int i = 0; i < nbPersonnage; i++) {
+            std::cout<<"Relation du personnage<<i<<" : "<<std::endl;
+            for(int j = 0; j < nbPersonnage; j++) {
+                if(relation[i][j]) {
+                    std::cout<<j<<std::endl;
+                }
+            }
+        }
+    }
+
+## 8 
+    bool isRelation(bool relation[][nbPersonnage], int nbPersonnage, int perso1, int perso2) {
+        for(int i = 0; i < nbPersonnage; i++) {
+            if(relation[perso1][i] == perso2) {
+                return true;        
+            }
+        }
+        return false;
+    }
+
+    bool isRelationPtr(int *relationPointeur[], int perso1, int perso2) {
+        for(int i = 0; i < size(relationPointeur[perso1]), i++) {
+            if(relationPointeur[perso1][i] == perso2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+## 9
+Je recommande le tableau dans un tableau si il y a peu de personnages avec beaucoup de relations, et le tableau de pointeur si il y a beaucoup de personnages avec peu de relations.
+
+# Ex 4
