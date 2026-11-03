@@ -79,7 +79,7 @@ void ex3() {
     delete tolerance;
 }
 
-void initSuiteMots(int & size, std::string & *suiteMots) {
+void initSuiteMots(int & size, std::string *suiteMots) {
     const int sizeMots = 5;
     std::string mots[sizeMots] = {"pas", "idee", "de", "mots", "originaux"};
     std::cout<<"Entrez la taille du tableau : ";
