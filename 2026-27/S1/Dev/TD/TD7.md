@@ -57,25 +57,26 @@
 
 # Ex 2
     struct personnage {
-        coordonnees coordonnees
         int pv
         int pm
-        std::string status
-    }
-
-    struct coordonnees {
-        int x
-        int y
+        status status
+        sorts sort[]
     }
 
     struct sort {
         std::string nom
         int pm
         int degat
-        std::string status
+        effet status
     }
 
-    int main() {
+    struct status {
+        int degat
+        std::string name
+        bool paralyse
+    }
+
+    void init() {
         sort sort1
         sort1.nom = "Phalusom Gigantum"
         sort1.pm = 50
@@ -83,5 +84,70 @@
         sort1.status = "A un enorme phalus"
 
         sort sort2
-        sort2.nom = "
+        sort2.nom = "Sortum Magicum"
+        sort2.pm = 0;
+        sort2.degat = 0;
+        sort2.status = "Ne sert strictement à rien"
+
+        status tropFort
+        tropFort.name = "Trop fort"
+        tropFort.degat = 0
+        tropFort.paralyse = false 
+
+        status tropFaible
+        tropFaible.name = "Trop faible"
+        tropFaible.degat = 0
+        tropFaible.paralyse = false 
+
+        personnage maxence = { 5, 2, tropFaible , [] }
+
+        personnage moi
+        personnage1.pv = 2000000
+        personnage1.pm = 1000000
+        personnage1.status = tropFort
+        personnage1.sorts = { sort1, sort2 }        
+    }
+
+    void combat(personnage perso1, personnage perso2) {
+        while(perso1.pv > 0 || perso2.pv > 0) {
+            Demander au personnage de lancer un sort
+        }
+    }
+
+    int main() {
+        init()
+        combat(moi, maxence)
+    }
+
+# Ex 4
+    struct maillon {
+        int valeur
+        maillon* suiv
+    }
+
+    void ajoutTete(maillon tete, int value) {
+        current = new maillon
+        current.valeur = value
+        current.suiv = &tete
+    }
+
+    void ajoutQueue(maillon tete, int value) {
+        maillon* current = &tete
+        while(current.suiv) {
+            current = current->suiv
+        }
+        suiv = new maillon 
+        current->suiv = &suiv
+        suiv.valeur = value
+        suiv.suiv = NULL
+    }
+
+    void insertion(maillon* tete, int value, int position) {
+        for(int i = 0; i < position; i++) {
+            
+        }
+    }
+
+    int main() {
+
     }
