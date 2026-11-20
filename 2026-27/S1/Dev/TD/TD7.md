@@ -120,29 +120,45 @@
     }
 
 # Ex 4
+    struct list {
+        maillon *head
+    }
+
     struct maillon {
         int valeur
-        maillon* suiv
+        maillon* next
     }
 
-    void ajoutTete(maillon tete, int value) {
-        current = new maillon
-        current.valeur = value
-        current.suiv = &tete
-    }
+    void ajoutTete(list *list, int value) {
+        maillon *currentMaillon = list->head
+        maillon *newMaillon = new maillon
 
-    void ajoutQueue(maillon tete, int value) {
-        maillon* current = &tete
-        while(current.suiv) {
-            current = current->suiv
+        if(currentMaillon == nullptr) {
+            newMaillon->next = nullptr
         }
-        suiv = new maillon 
-        current->suiv = &suiv
-        suiv.valeur = value
-        suiv.suiv = NULL
+
+        newMaillon->value = value
+
+        list->head = newMaillon
+        newMaillon->next = currentMaillon
     }
 
-    void insertion(maillon* tete, int value, int position) {
+    void ajoutQueue(list *list, int value) {
+        maillon* current = list->head
+
+        while(current->next != nullptr) {
+            current = current->next
+        }
+
+        maillon newMaillon = new maillon 
+        newMaillon->value = value
+        +
+        newMaillon->next = nullptr
+
+        current->next = newMaillon
+    }
+
+    void insertion(list *list, int value, int position) {
         for(int i = 0; i < position; i++) {
             
         }

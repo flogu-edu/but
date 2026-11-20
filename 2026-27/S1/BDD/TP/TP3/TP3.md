@@ -1,0 +1,1 @@
+La suppression ne fonctionne pas car les tables ne sont pas vides et comportent des relations non vide (impossible de supprimer pour éviter les données orphelines)
